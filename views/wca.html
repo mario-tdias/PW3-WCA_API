@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container container-narrow">
+    <h2 class="text-center mb-4">WCA - Competidores</h2>
+    <form method="get" action="{{ url_for('wcaCompetitors') }}" class="row g-3 mb-4 justify-content-center">
+        <div class="col-auto">
+            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Buscar por nome (ex: Feliks)" />
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+
+    {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    {% if query and competitors|length == 0 and not error %}
+    <p>Nenhum competidor encontrado para "{{ query }}".</p>
+    {% endif %}
+
+    <div class="row g-4 justify-content-center">
+        {% for c in competitors %}
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card p-2 h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="{{ c.avatar_thumb_url or c.avatar_url or 'data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'56\' height=\'56\'><rect width=\'100%\' height=\'100%\' fill=\'%23eeeeee\'/><text x=\'50%\' y=\'55%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'18\' fill=\'#bbb\'>?</text></svg>' }}" alt="avatar" class="me-3" style="width:56px; height:56px; object-fit:cover; border-radius:50%; border:1px solid #ddd;"/>
+                        <div>
+                            <h5 class="card-title mb-0">{{ c.name }}</h5>
+                            <small class="text-muted">{{ c.wca_id or '—' }}</small>
+                        </div>
+                    </div>
+                    <ul class="list-unstyled small mb-3">
+                        <li class="mb-1"><span class="text-muted">País:</span> <strong>{{ c.country_iso2 or '—' }}</strong></li>
+                        <li class="mb-1"><span class="text-muted">Competições:</span> <strong>{{ c.competition_count if c.competition_count is not none else '—' }}</strong></li>
+                    </ul>
+                    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                        <span class="badge text-bg-warning">🥇 {{ c.medals_gold if c.medals_gold is not none else '—' }}</span>
+                        <span class="badge text-bg-secondary">🥈 {{ c.medals_silver if c.medals_silver is not none else '—' }}</span>
+                        <span class="badge text-bg-bronze">🥉 {{ c.medals_bronze if c.medals_bronze is not none else '—' }}</span>
+                        <span class="badge text-bg-light border">Total: {{ c.medals_total if c.medals_total is not none else '—' }}</span>
+                    </div>
+                    {% if c.profile_url %}
+                    <a href="{{ c.profile_url }}" target="_blank" class="btn btn-sm btn-outline-secondary">Ver perfil</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+
+

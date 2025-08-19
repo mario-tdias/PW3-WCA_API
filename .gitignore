@@ -1,0 +1,59 @@
+# Python bytecode/cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Package/Build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs
+*.log
+logs/
+pip-log.txt
+
+# Coverage/Testing
+.coverage
+coverage/
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+
+# Flask instance folder and sqlite
+instance/
+*.sqlite
+*.sqlite3
+
+# Environment & secrets (DO NOT COMMIT)
+.env
+.env.*
+!.env.example
+.flaskenv
+*.secret
+secrets/
+*.key
+*.pem
+*.crt
+.python-version
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editors/IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Caches/temp
+.cache/
+*.tmp
+*.bak
