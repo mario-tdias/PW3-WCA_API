@@ -7,6 +7,8 @@ html, body {
 body {
     background: #f8f9fa;
     color: #212529;
+    font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -18,11 +20,22 @@ a {
 /* Navbar clean */
 .navbar {
     background: #ffffff !important;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid #edf0f3;
     box-shadow: 0 1px 2px rgba(0,0,0,0.02);
 }
 .navbar-brand {
     font-weight: 600;
+}
+
+/* Page structure */
+.page-header {
+    padding: 28px 0 16px;
+}
+.page-content {
+    padding: 24px 0 48px;
+}
+.page-footer {
+    padding: 16px 0 28px;
 }
 
 /* Header */
@@ -57,6 +70,10 @@ header hr {
     filter: brightness(1.05);
 }
 
+.btn-outline-secondary {
+    border-color: #dee2e6;
+}
+
 /* Forms */
 .form-control {
     border: 1px solid #dee2e6;
@@ -65,6 +82,10 @@ header hr {
 .form-control:focus {
     border-color: #0d6efd;
     box-shadow: 0 0 0 .2rem rgba(13,110,253,.25);
+}
+
+.container form input[type="text"]::placeholder {
+    color: #9aa2a9;
 }
 
 /* Badges */
@@ -84,4 +105,13 @@ footer hr {
 /* Layout helpers */
 .container-narrow {
     max-width: 980px;
+}
+
+/* Utilities */
+.centered-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    color: #6c757d;
 }

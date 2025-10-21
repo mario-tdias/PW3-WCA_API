@@ -1,0 +1,15 @@
+{ % extends 'base.html' %}
+{ % block content %}
+<h2 style="text-align: center;">Galeria</h2><br>
+<div class="container col-6">
+    <div class="card mt-4">
+        <div class="card-body">
+            <form action="{#{url_for('galeria')}#}" method="post" enctype="multipart/form-data">
+                <label for="file">Envie sua imagem:</label>
+                <input class="form-control" name="file" type="file" required><br>
+                <button type="submit" class="btn btn-danger btn-block">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{ % endblock content %}

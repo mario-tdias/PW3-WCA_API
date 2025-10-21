@@ -10,13 +10,22 @@
             <button type="submit" class="btn btn-primary">Buscar</button>
         </div>
     </form>
+    <div class="text-center text-muted mb-4">
+        <small>Exemplos de busca:
+            <a href="{{ url_for('wcaCompetitors') }}?q=Yiheng%20Wang" class="link-secondary">Yiheng Wang</a>,
+            <a href="{{ url_for('wcaCompetitors') }}?q=Max%20Park" class="link-secondary">Max Park</a>,
+            <a href="{{ url_for('wcaCompetitors') }}?q=Tymon%20Kolasinski" class="link-secondary">Tymon Kolasinski</a>,
+            <a href="{{ url_for('wcaCompetitors') }}?q=Sebastian%20Weyer" class="link-secondary">Sebastian Weyer</a>,
+            <a href="{{ url_for('wcaCompetitors') }}?q=Mats%20Valk" class="link-secondary">Mats Valk</a>
+        </small>
+    </div>
 
     {% if error %}
     <div class="alert alert-danger">{{ error }}</div>
     {% endif %}
 
     {% if query and competitors|length == 0 and not error %}
-    <p>Nenhum competidor encontrado para "{{ query }}".</p>
+    <div class="centered-empty">Nenhum competidor encontrado para "{{ query }}".</div>
     {% endif %}
 
     <div class="row g-4 justify-content-center">
@@ -40,6 +49,12 @@
                         <span class="badge text-bg-secondary">🥈 {{ c.medals_silver if c.medals_silver is not none else '—' }}</span>
                         <span class="badge text-bg-bronze">🥉 {{ c.medals_bronze if c.medals_bronze is not none else '—' }}</span>
                         <span class="badge text-bg-light border">Total: {{ c.medals_total if c.medals_total is not none else '—' }}</span>
+                    </div>
+                    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                        <span class="badge text-bg-dark">WR: {{ c.records_wr if c.records_wr is not none else '—' }}</span>
+                        <span class="badge text-bg-info text-dark">CR: {{ c.records_cr if c.records_cr is not none else '—' }}</span>
+                        <span class="badge text-bg-success">NR: {{ c.records_nr if c.records_nr is not none else '—' }}</span>
+                        <span class="badge text-bg-light border">Rec.: {{ c.records_total if c.records_total is not none else '—' }}</span>
                     </div>
                     {% if c.profile_url %}
                     <a href="{{ c.profile_url }}" target="_blank" class="btn btn-sm btn-outline-secondary">Ver perfil</a>
